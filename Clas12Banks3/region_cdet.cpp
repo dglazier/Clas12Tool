@@ -55,14 +55,18 @@ namespace clas12 {
  ///////////////////////////////////////////////////////
   /// Get pointer to scintillator banks for this particle
   /// This should be used directly to acess data
-  /// e.g. p->scint(CND)->getEnergy();
+  /// e.g. p->scint(CND1)->getEnergy();
   ///      p->scint(CTOF)->getTime();
   const scint_ptr region_cdet::sci(ushort lay) const {
     switch(lay){ 
     case clas12::CTOF :
       _scint->setIndex(_ptof);return _scint;
-    case clas12::CND :
-      _scint->setIndex(_pcnd);return _scint;
+    case clas12::CND1 :
+      _scint->setIndex(_pcnd1);return _scint;
+    case clas12::CND2 :
+      _scint->setIndex(_pcnd2);return _scint;
+    case clas12::CND3 :
+      _scint->setIndex(_pcnd3);return _scint;
     }
     _scint->setIndex(-1);return _scint;
   }
