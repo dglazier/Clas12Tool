@@ -36,7 +36,7 @@ namespace clas12 {
       if(_index>-1)return getFloat(_time_order,_index);
       return 0;
     }
-    int getNphe(){ 
+    float getNphe(){ 
       if(_index>-1)return getFloat(_nphe_order,_index);
       return 0;
     }
