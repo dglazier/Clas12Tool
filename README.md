@@ -89,6 +89,10 @@ You can group histograms together for lazy execution if they all come from the s
 
 The clas12reader class performs the correlation of particle and detector inofmation (aka reverse indexing). When looping over particles you are looping over region_particle (see Clas12Banks for full reference). Each region, FT, FD and CD has its own definition of a region_particle so it will only return meaningful data (i.e. a CD particle will return 0 for FD detector information). In addition the getTime, getPath, getDetEnergy functions have predefined meaning for each region, e.g. for FT getTime returns FTCAL time, for FD it returns FTOF1A if it exists, if not it will try FTOF1B, FTOF2 then PCAL.
 
+  ###NEW you can add hipo file tags to clas12reader e.g.
+
+         clas12reader c12("file.hipo",{0,1,6});
+
 You can insepct the code [$CLAS12TOOL/RunRoot/Ex1_CLAS12Reader.C](https://github.com/dglazier/Clas12Tool/blob/master/RunRoot/Ex1_CLAS12Reader.C) for more guidance on how to use it.
 
 To run (for hipo3 replace the 4 with a 3):
