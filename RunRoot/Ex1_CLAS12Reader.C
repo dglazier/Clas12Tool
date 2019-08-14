@@ -74,8 +74,9 @@ void Ex1_CLAS12Reader(){
    
    for(Int_t i=0;i<files->GetEntries();i++){
      //create the event reader
-      clas12reader c12(files->At(i)->GetTitle());
-
+     clas12reader c12(files->At(i)->GetTitle());
+     //  clas12reader c12(files->At(i)->GetTitle(),{1});//add tags {tag1,tag2,tag3,...}
+      
       //Add some event Pid based selections
       //////////c12.AddAtLeastPid(211,1); //at least 1 pi+
       //c12.addExactPid(11,1);    //exactly 1 electron

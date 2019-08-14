@@ -1,5 +1,7 @@
 rm  CMakeLists.txt
 ln -s CMakeLists.txt.hipo4 CMakeLists.txt
+cp $HIPO/hipo4/*.h hipo4/.
+cp $HIPO/hipo4/*.cpp hipo4/.
 mkdir build4
 cd build4
 cmake ../

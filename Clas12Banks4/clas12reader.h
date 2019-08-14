@@ -54,7 +54,7 @@ namespace clas12 {
 
 
     clas12reader()=default;
-    clas12reader(std::string filename);
+    clas12reader(std::string filename,std::vector<long> tags=std::vector<long>());
     ~clas12reader()=default;
 
     hipo::reader& getReader(){return _reader;}

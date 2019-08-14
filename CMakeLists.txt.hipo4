@@ -38,8 +38,10 @@ add_definitions(-D__LZ4__)
 #after Lz4 change include to include
 set(CMAKE_INSTALL_INCLUDEDIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/Hipo4)
-add_subdirectory (${CMAKE_CURRENT_SOURCE_DIR}/Hipo4)
+#include_directories(${CMAKE_CURRENT_SOURCE_DIR}/Hipo4)
+#add_subdirectory (${CMAKE_CURRENT_SOURCE_DIR}/Hipo4)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/hipo4)
+add_subdirectory (${CMAKE_CURRENT_SOURCE_DIR}/hipo4)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/Clas12Banks4)
 add_subdirectory (${CMAKE_CURRENT_SOURCE_DIR}/Clas12Banks4)
