@@ -7,7 +7,9 @@ Seperate code is provided for hipo3 and hipo4 format. The corresponding director
 Examples are given for running in interactive ROOT sessions and ROOT-Jupyter notebooks.
 
 
-## HipoX -> Clas12BanksX -> Clas12Root
+## Clas12BanksX -> Clas12Root
+
+NEW We now use an external hipo4 repository. This must be pointed at with the variable HIPO. The files from hipo/hipo4 will be copied here.
 
 The Hipo c++ reader library can be used independent of specific banks and ROOT, but depends on Hipo.
 
@@ -29,7 +31,7 @@ git clone --recurse-submodules https://github.com/dglazier/Clas12Tool.git
 
 cd Clas12Tool
 
-git checkout dst4
+git checkout restructure
 
 ## To setup Run ROOT
 
@@ -39,11 +41,15 @@ setenv CLAS12TOOL $PWD  (the actual path can be added in your bashrc or tchrc)
 
 setenv PATH "$PATH":"$CLAS12TOOL/bin"
 
+setenv HIPO /Where/Is/hipo
+
 or for bash
 
 export CLAS12TOOL=$PWD
 
 export PATH="$PATH":"$CLAS12TOOL/bin"
+
+export HIPO=/Where/Is/hipo
 
 ## To install (either Hipo3 or Hipo4)
 
