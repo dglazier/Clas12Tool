@@ -47,8 +47,8 @@ namespace clas12root {
      _mapOfParts["RUN"]="c12.runconfig()->";
 
      //EVENT
-    _mapOfParts["EVNT"]="c12.head()->";
-    _mapOfParts["EVNT4"]="c12.event()->";
+    _mapOfParts["EVNT"]="c12.event()->";
+    _mapOfParts["EVNT4"]="c12.event()->"; //kept for backward compatability hipo3->hipo4
     _mapOfParts["EVNTFT"]="c12.ftbevent()->";
 
      //C12

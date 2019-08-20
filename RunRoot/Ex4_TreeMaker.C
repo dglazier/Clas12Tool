@@ -1,12 +1,11 @@
-//particleTree4 /dir/file.hipo out.root Ex4_TreeMaker.C
+//particleTree /dir/file.hipo out.root Ex4_TreeMaker.C
 {
-  //For hipo4 use EVNT4 , hipo3 EVNT
   //add event header branch, includes start time
-  //treemaker.UseEventData(); //hipo4 only
+  //treemaker.UseEventData();
   
   //make branch with given formula and alias it to name Time
-  //treemaker.Branch("P.Time-EVNT4.StartTime/F","Time");
-  //treemaker.Branch("P.Time-EVNT4.FTBStartTime/F","FTBTime");
+  //treemaker.Branch("P.Time-EVNT.StartTime/F","Time");
+  //treemaker.Branch("P.Time-EVNT.FTBStartTime/F","FTBTime");
   treemaker.Branch("P.Time/F");
   treemaker.Branch("P.Path/F");
   treemaker.Branch("P.DetEnergy/P.P/F","SampFrac");
@@ -19,7 +18,7 @@
   treemaker.Branch("PBANK.Vy/F");
   treemaker.Branch("PBANK.Vz/F");
   treemaker.Branch("PBANK.Pid/I");
-  //treemaker.Branch("PBANK.FTBPid/I");//Hipo4 DSTs
+  //treemaker.Branch("PBANK.FTBPid/I");//FT based PID
 
   //e.g. Only save electron information
   // treemaker.AddParticleCut("PBANK.Pid==11");

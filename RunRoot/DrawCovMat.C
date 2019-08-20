@@ -1,3 +1,5 @@
+//         clas12root
+//         BankHist hists("/WHERE/IS/MY/HIPO/file.hipo");
 {
   hists.Hist1D("CovMat.C22",100,1E-10,30E1,"CovMat.C22&&P.Region==FD");
   hists.Hist1D("CovMat.C33",100,1E-10,2E-3,"CovMat.C33&&P.Region==FD");

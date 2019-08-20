@@ -1,15 +1,14 @@
 # Clas12Tool
 
-Data Analysis Tools for HIPO data format.
+Data Analysis Tools for hipo4 data format.
 
-Seperate code is provided for hipo3 and hipo4 format. The corresponding directories, libraries and binaries have an additional 3 or 4 to distinguish. Users are responsible for using the correct format for their hipo files.
 
 Examples are given for running in interactive ROOT sessions and ROOT-Jupyter notebooks.
 
 
-## Clas12BanksX -> Clas12Root
+## Clas12Banks -> Clas12Root
 
-NEW We now use an external hipo4 repository. This must be pointed at with the variable HIPO. The files from hipo/hipo4 will be copied here.
+NEW We now use an external hipo4 repository. This must be pointed at with the variable HIPO when installing. The files from hipo/hipo4 will be copied here to Hipo4.
 
 The Hipo c++ reader library can be used independent of specific banks and ROOT, but depends on Hipo.
 
@@ -53,7 +52,7 @@ export HIPO=/Where/Is/hipo
 
 ## To install (either Hipo3 or Hipo4)
 
-   installHipo3  and/or installHipo4
+   installC12Root
 
 
 If there are issues with cmake and your ROOTSYS you can try using the local FindROOT file. Edit the CMakeList.txt.hipo3 or 4 files removing the lines with comment ##USEROOTSYS and uncomment the line
@@ -64,13 +63,13 @@ If there are issues with cmake and your ROOTSYS you can try using the local Find
 	 
 ## interactive root session
 
-To start an interactive session with pre-loaded Clas12Root us clas12root3 or clas12root4 instead of root on the command line.
+To start an interactive session with pre-loaded Clas12Root use clas12root instead of root on the command line.
 
-## Ex 0 Plotting an item from any bank (HIPO4)
+## Ex 0 Plotting an item from any bank
  
 This is faster than the particle draw as it only requires the reading of 1 bank.
 
-         clas12root4
+         clas12root
 
          BankHist bankDraw("/WHERE/IS/MY/HIPO/file.hipo");
          bankDraw.Hist1D("REC::Particle::Pz",100,0,10,"")->Draw()
@@ -95,9 +94,9 @@ The clas12reader class performs the correlation of particle and detector inofmat
 
 You can insepct the code [$CLAS12TOOL/RunRoot/Ex1_CLAS12Reader.C](https://github.com/dglazier/Clas12Tool/blob/master/RunRoot/Ex1_CLAS12Reader.C) for more guidance on how to use it.
 
-To run (for hipo3 replace the 4 with a 3):
+To run:
 
-       clas12root4 $CLAS12TOOL/RunRoot/Ex1_CLAS12Reader.C+ --in=/WHERE/IS/MY/HIPO/file.hipo
+       clas12root $CLAS12TOOL/RunRoot/Ex1_CLAS12Reader.C+ --in=/WHERE/IS/MY/HIPO/file.hipo
 
 Note the use of the + sign after the macro name. This compiles the script meaning it will run much faster.
 
@@ -120,11 +119,11 @@ Click on the notebook CLAS12Reader3Pi.ipynb and follow the tutorial
 
 ## Ex 2 Drawing particle histograms from hipo files
 
-       particleDraw4 /WHERE/IS/MY/HIPO/file.hipo
+       particleDraw /WHERE/IS/MY/HIPO/file.hipo
 
 Or chain together files with wildcard, note the ' '
 
-       particleDraw4 '/WHERE/IS/MY/HIPO/file_*.hipo'
+       particleDraw '/WHERE/IS/MY/HIPO/file_*.hipo'
 
 
 You will get an interactive ROOT prompt where you can draw histograms:
@@ -140,7 +139,7 @@ Remember at the end you can save all the histograms to file :
 
 Instead of drawing histograms interactively at the prompt you may give predefined histograms via a script e.g. :
 
-	particleDraw4 /WHERE/IS/MY/HIPO/file.hipo Ex2_HipoDraw.C
+	particleDraw /WHERE/IS/MY/HIPO/file.hipo Ex2_HipoDraw.C
 
 See $CLAS12TOOL/RunRoot/Ex2_HipoDraw.C for details.
 
@@ -166,9 +165,9 @@ The region particle has derived quantities such as theta and phi as well as sele
 
 For REC::EVNT use (adding FTB for RECFT::EVNT banks)
 
-        e.g. EVNT.StartTime (Hipo3) EVNT4.StartTime (Hipo4) EVNT4.FTBStartTime (hipo4 from RECFT)
+        e.g. EVNT.StartTime or EVNT.FTBStartTime
 
-For Run::config (hipo4)
+For Run::config
 
        e.g. RUN.Trigger
 
@@ -181,11 +180,11 @@ Click on the notebook HipoDraw.ipynb and follow the tutorial
 
 ## Ex 4 Filtering and Skimming into a ROOT ntuple (tree)
 
-       particleTree4  /WHERE/IS/MY/HIPO/file.hipo /OUTPUT/tree.root Ex4_TreeMaker.C
+       particleTree  /WHERE/IS/MY/HIPO/file.hipo /OUTPUT/tree.root Ex4_TreeMaker.C
        
 Or chain together files with wildcard, note the ' '
 
-       particleTree4  '/WHERE/IS/MY/HIPO/file_*.hipo' /OUTPUT/tree.root Ex4_TreeMaker.C
+       particleTree  '/WHERE/IS/MY/HIPO/file_*.hipo' /OUTPUT/tree.root Ex4_TreeMaker.C
 
 The script $CLAS12ROOT/RunRoot/Ex4_TreeMaker.C defines which branches are to be written and what cuts to put on the event topology. You can copy and edit this file to do what you want. The branches should use the conventions above for accessing different bank items e.g.
 
@@ -195,8 +194,8 @@ The script $CLAS12ROOT/RunRoot/Ex4_TreeMaker.C defines which branches are to be 
 
 You can perform some arithmetic and define a new branch e.g.
 
-    	treemaker.Branch("P.Time-EVNT4.StartTime/F","Time"); //branch name Time
-  	treemaker.Branch("P.Time-EVNT4.FTBStartTime/F","FTBTime"); //branch name FTBTime
+    	treemaker.Branch("P.Time-EVNT.StartTime/F","Time"); //branch name Time
+  	treemaker.Branch("P.Time-EVNT.FTBStartTime/F","FTBTime"); //branch name FTBTime
 
 
      treemaker.AddExactPid(11,1); //filter events with exactly 1 e-
@@ -214,7 +213,6 @@ Click on the notebook HipoToRootTree.ipynb and follow the tutorial
 
 ## Ex 3 Using HipoSelector & PROOFLite
 
-ONLY FOR HIPO4
 
 This assumes you are aware of and understand the ROOT TSelector and PROOF scheme. See https://root.cern.ch/proof.
 
@@ -243,7 +241,7 @@ You may also add event selections as above using the AddFilter function
 To execute (note the + is important) :
 
 
-       clas12proof4 4 mySelector.C+ Ex3_ProofLite.C
+       clas12proof 4 mySelector.C+ Ex3_ProofLite.C
 
 Note 4 = number of workers used, you should change this to however many you would like.
 
@@ -251,7 +249,7 @@ Note mySelector is hard-coded in Ex3_ProofLite.C so for your own selector you sh
 
 As a more complete example you can check testSelector in RunRoot which implements the particle analysis and histogramming from Ex1. This can be run with Ex3b_TestSelector.C once you change the HipoChain files :
 
-         clas12proof4 8 RunRoot/testSelector.C+  RunRoot/Ex3b_TestSelector.C
+         clas12proof 8 RunRoot/testSelector.C+  RunRoot/Ex3b_TestSelector.C
 
 
 ### Jupyter

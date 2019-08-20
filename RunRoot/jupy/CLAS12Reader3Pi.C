@@ -22,37 +22,12 @@ void SetLorentzVector(TLorentzVector &p4,clas12::region_part_ptr rp){
 
 }
 
-void Ex1_CLAS12Reader(){
+void CLAS12Reader3Pi(TString filename){
   // Record start time
   auto start = std::chrono::high_resolution_clock::now();
 
 
-  /////////////////////////////////////
-  //ignore this just getting file name!
-   TString inputFile;
-   TString outputFile;
-
-   for(Int_t i=1;i<gApplication->Argc();i++){
-    TString opt=gApplication->Argv(i);
-    if((opt.Contains(".hipo"))){
-      inputFile=opt(5,opt.Sizeof());
-    }
-   }
-   if(inputFile==TString())  {
-      std::cout << " *** please provide a file name..." << std::endl;
-     exit(0);
-   }
-   /////////////////////////////////////
-
-   
-   cout<<"Analysing hipo file "<<inputFile<<endl;
-
-   TChain fake("hipo");
-   fake.Add(inputFile.Data());
-   //get the hipo data
-   //   reader.open(inputFile.Data());
-   auto files=fake.GetListOfFiles();
-
+ 
    //some particles
    auto db=TDatabasePDG::Instance();
    TLorentzVector beam(0,0,10.6,10.6);
@@ -72,9 +47,7 @@ void Ex1_CLAS12Reader(){
    int counter=0;
  
    
-   for(Int_t i=0;i<files->GetEntries();i++){
-     //create the event reader
-     clas12reader c12(files->At(i)->GetTitle());
+  clas12reader c12(filename.Data());
      //  clas12reader c12(files->At(i)->GetTitle(),{0});//add tags {tag1,tag2,tag3,...}
       
       //Add some event Pid based selections
@@ -160,9 +133,10 @@ void Ex1_CLAS12Reader(){
        
        counter++;
      }
-   }
+
    gBenchmark->Stop("timer");
    gBenchmark->Print("timer");
+    
    TCanvas* can=new TCanvas();
    can->Divide(2,1);
    can->cd(1);
@@ -171,7 +145,7 @@ void Ex1_CLAS12Reader(){
    hm2g->DrawCopy();
    hm2gCut->SetLineColor(2);
    hm2gCut->DrawCopy("same");
-  
+   can->Draw(); //need in notebook
    auto finish = std::chrono::high_resolution_clock::now();
    std::chrono::duration<double> elapsed = finish - start;
    std::cout << "Elapsed time: " << elapsed.count()<< " events = "<<counter<< " s\n";

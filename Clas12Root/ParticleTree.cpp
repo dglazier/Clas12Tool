@@ -42,7 +42,7 @@ namespace clas12root {
     _mapOfParts["P"]="p->";
 
     //EVENT
-    _mapOfParts["EVNT"]="c12.head()->";
+    _mapOfParts["EVNT"]="c12.event()->";
     _mapOfParts["EVNT4"]="c12.event()->";
     _mapOfParts["EVNTFT"]="c12.ftbevent()->";
 

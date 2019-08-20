@@ -1,13 +1,6 @@
-if(USE_HIPO3)
-  set(CLAS12ROOT Clas12Root3)
-  set(CLAS12BANKS Clas12Banks3)
-  set(HIPO Hipo3)
-endif(USE_HIPO3)
-if(USE_HIPO4)
-  set(CLAS12ROOT Clas12Root4)
-  set(CLAS12BANKS Clas12Banks4)
-  set(HIPO Hipo4)
-endif(USE_HIPO4)
+set(CLAS12ROOT Clas12Root)
+set(CLAS12BANKS Clas12Banks)
+set(HIPO Hipo4)
 
 ROOT_GENERATE_DICTIONARY(G__${CLAS12ROOT}  BankHist.h HipoHist.h HipoTreeMaker.h HipoChain.h HipoRootAction.h   HipoROOTOut.h ParticleHist.h HipoSelector.h ParticleTree.h LINKDEF Clas12RootLinkDef.h)
 

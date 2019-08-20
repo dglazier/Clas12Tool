@@ -1,4 +1,4 @@
-//particleDraw4 /dir/file.hipo Ex2_HipoDraw.C
+//particleDraw /dir/file.hipo Ex2_HipoDraw.C
 {
 
   hists.Hist1D("P.Theta*TMath::RadToDeg()",180,0,180,"PBANK.Px");
