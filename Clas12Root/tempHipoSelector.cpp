@@ -51,7 +51,7 @@ namespace clas12root{
     
   }
   
-  void testSelector::AddFilter(){
+  void tempHipoSelector::AddFilter(){
     //   _c12->addExactPid(11,1);    //exactly 1 electron
    }
 
