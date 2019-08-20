@@ -172,6 +172,9 @@ For Run::config
        e.g. RUN.Trigger
 
 ### Jupyter
+
+Go to directory containing notebooks e.g. $CLAS12ROOT/RunRoot/jupy
+
 Start a ROOT note book :
 
       	root --notebook
@@ -203,6 +206,8 @@ You can perform some arithmetic and define a new branch e.g.
      treemaker.AddZeroOfRestPid(); //and zero of any other particle type (default is any)
 
 ### Jupyter
+
+Go to directory containing notebooks e.g. $CLAS12ROOT/RunRoot/jupy
 
 Start a ROOT note book :
 
@@ -253,6 +258,8 @@ As a more complete example you can check testSelector in RunRoot which implement
 
 
 ### Jupyter
+
+Go to directory containing notebooks e.g. $CLAS12ROOT/RunRoot/jupy
 
 Start a ROOT note book :
 
